@@ -10,7 +10,7 @@ LOSS_RESULTS = ["timeout", "resigned", "checkmated"]
 parser = argparse.ArgumentParser(description='Head to head results of players on chess.com in the current month')
 parser.add_argument('player_one', help='The first player')
 parser.add_argument('player_two', help='The second player')
-parser.add_argument('--timeframe', help='input timeframe want to check in the format <year>/<month>-<year>/<month>, i.e. 2020/11-2020/12',
+parser.add_argument('--timeframe', help='input timeframe you want to check in the format <year>/<month>-<year>/<month>, i.e. 2020/11-2020/12',
                     default=False)
 parser.add_argument('--all', help='Get the entire match history of the two players', action='store_true')
 parser.add_argument('--game_type', help='specify the type of game being played')
@@ -58,6 +58,7 @@ else:
     # Get the current months records
     now = datetime.datetime.today()
     urls.append(f'https://api.chess.com/pub/player/{username1}/games/{now.year}/{now.month}')
+    print("Getting player records for the current month.  If you'd like a different timeframe, use --timeframe or --all")
     print('Warning: The chess.com api is slow, this could take some time')
 
 # read through data and figure out the users record against the other user
