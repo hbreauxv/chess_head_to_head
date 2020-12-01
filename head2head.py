@@ -94,4 +94,15 @@ else:
     args.game_type = args.game_type + ' '
 print(f'\n{args.player_one} has the following {args.game_type}record against {args.player_two}:')
 print(user1record)
-# print(f'w/l = {user1record["wins"] / user1record["losses"]}')
+
+# calculate w/d/l rations
+wins = int(user1record['wins'])
+draws = int(user1record['draws'])
+losses = int(user1record['losses'])
+total_games = wins + draws + losses
+
+w_percentage = round((wins/total_games * 100), 1)
+d_percentage = round((draws/total_games * 100), 1)
+l_percentage = round((losses/total_games * 100), 1)
+
+print(f'Win/Draw/Loss Percentage: {w_percentage}%/{d_percentage}%/{l_percentage}%')
