@@ -13,9 +13,12 @@ parser.add_argument('player_two', help='The second player')
 parser.add_argument('--timeframe', help='input timeframe you want to check in the format <year>/<month>-<year>/<month>, i.e. 2020/11-2020/12',
                     default=False)
 parser.add_argument('--all', help='Get the entire match history of the two players', action='store_true')
-parser.add_argument('--game_type', help='specify the type of game being played')
+parser.add_argument('--game_type', help="specify the game format you'd like to view results on.  Multiple can be specified in the format <game_type>,<game_type>,<etc>")
 
 args = parser.parse_args()
+
+if args.game_type:
+    game_types = args.game_type.split(',')
 
 username1 = args.player_one
 username2 = args.player_two
@@ -67,7 +70,7 @@ for url in urls:
     data = requests.get(url)
     for game in data.json()['games']:
         if args.game_type:
-            if args.game_type.lower() != game["time_class"].lower():
+            if game["time_class"].lower() not in game_types:
                 continue
         result = ''
         if game['white']['username'] == username1 and game['black']['username'] == username2:
