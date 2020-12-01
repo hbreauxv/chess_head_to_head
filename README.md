@@ -16,6 +16,6 @@ python3 head2head.py DanielNaroditsky Hikaru
 
 --all                 Get the entire match history of the two players
 
---game_type GAME_TYPE
-                      specify the type of game being played
+--game_type
+                      specify the game format you'd like to view results on i.e. bullet, blitz, etc
 
